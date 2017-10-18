@@ -1,14 +1,14 @@
 #include "TListItem.h"
 #include <iostream>
 
-TListItem::TListItem(const Square& square) {
-	this->square = square;
+TListItem::TListItem(const Figure& figure) {
+	this->figure = figure;
 	this->next = nullptr;
 	//std::cout << "List item: created" << std::endl;
 }
 
 TListItem::TListItem(const TListItem& orig) {
-	this->square = orig.square;
+	this->figure = orig.figure;
 	this->next = orig.next;
 	//std::cout << "List item: copied" << std::endl;
 }
@@ -19,9 +19,6 @@ TListItem* TListItem::SetNext(TListItem* next) {
 	return old;
 }
 
-Square TListItem::GetSquare() const {
-	return this->square;
-}
 
 TListItem* TListItem::GetNext() {
 	return this->next;
@@ -34,10 +31,6 @@ TListItem::~TListItem() {
 }
 
 std::ostream& operator<<(std::ostream& os, const TListItem& obj) {
-	os << "[" << obj.square << "]";//<< std::endl;
+	os << "[" << obj.figure << "]";//<< std::endl;
 	return os;
-}
-
-bool operator==(TListItem & first, TListItem &last) {
-	return first.square == last.square;
 }

@@ -1,13 +1,16 @@
 #include <cstdlib>
 #include <iostream>
-#include "square.h"
+#include "Figure.h"
+#include "Square.h"
+#include "Rectangle.h"
+#include "Trapeze.h"
 #include "TListItem.h"
 #include "TList.h"
 
 int main(int argc, char** argv) {
 	TList list;
 	int menuNum = 7;
-	long int size;
+	int size;
 	std::cout << "Hello! That's my MENU:" << std::endl;
 	while (menuNum != 0) {
 		if ((menuNum >= 0) || (menuNum <= 7))
@@ -21,30 +24,20 @@ int main(int argc, char** argv) {
 				std::cout << "Please, enter a side of the square: " << std::endl;
 				std::cin >> size;
 				if (size >= 0) {
-					list.addLast(Square(size));
-					std::cout << "Square is added." << std::endl;
+					list.addFirst(Square(size));
+					std::cout << "Figure is added." << std::endl;
 				}
 				else {
-					std::cout << "I can't make such square." << std::endl;
+					std::cout << "I can't make such figure." << std::endl;
 				}
 				std::cout << "______________________________________" << std::endl;
 				break;
 			case 2:
-				std::cout << "Please, enter a side of the square: " << std::endl;
-				std::cin >> size;
-				if (size >= 0) {
-					list.addFirst(Square(size));
-					std::cout << "Square is added." << std::endl;
-				}
-				else {
-					std::cout << "I can't make such square." << std::endl;
-				}
+				list.addFirst(Rectangle(std::cin));
 				std::cout << "______________________________________" << std::endl;
 				break;
 			case 3:
-				std::cout << "Please, enter a side of the square you want to delete: " << std::endl;
-				std::cin >> size;
-				list.delElement(Square(size));
+				list.addFirst(Trapeze(std::cin));
 				std::cout << "______________________________________" << std::endl;
 				break;
 			case 4:
@@ -52,12 +45,13 @@ int main(int argc, char** argv) {
 				std::cout << "______________________________________" << std::endl;
 				break;
 			case 5:
-				std::cout << "Please, enter a side of the square you want to add: " << std::endl;
+				std::cout << "Please, enter an index of figure you want to delete " << std::endl;
 				std::cin >> size;
-				std::cout << "Please, enter a side of the square after which you want to add: " << std::endl;
-				long int size2;
-				std::cin >> size2;
-				list.insert(size2, size);
+				if (size < 0) {
+					std::cout << "I don't know such index." << std::endl;
+					break;
+				}
+				list.delElement(size);
 				std::cout << "______________________________________" << std::endl;
 				break;
 			case 6:
@@ -66,11 +60,11 @@ int main(int argc, char** argv) {
 				std::cout << "______________________________________" << std::endl;
 				break;
 			case 7:
-				std::cout << "1. Add new item in end of list." << std::endl;
-				std::cout << "2. Add new item in begin of list." << std::endl;
-				std::cout << "3. Delete item from list" << std::endl;
+				std::cout << "1. Add new square" << std::endl;
+				std::cout << "2. Add new rectangle." << std::endl;
+				std::cout << "3. Add new trapeze." << std::endl;
 				std::cout << "4. Print list." << std::endl;
-				std::cout << "5. Insert in list" << std::endl;
+				std::cout << "5. Delete item" << std::endl;
 				std::cout << "6. Erase list." << std::endl;
 				std::cout << "7. Print MENU." << std::endl;
 				std::cout << "0. Exit out program." << std::endl;
@@ -93,10 +87,10 @@ int main(int argc, char** argv) {
 	system("pause");
 	return 0;
 }
-//list.addFirst(Square(3));
-//list.addFirst(Square(5));
-//list.addLast(Square(4)); //works
-//list.insert(Square(5),Square(4));//works
-//list.delElement(Square(3));//works
+//list.addFirst(Figure(3));
+//list.addFirst(Figure(5));
+//list.addLast(Figure(4)); //works
+//list.insert(Figure(5),Figure(4));//works
+//list.delElement(Figure(3));//works
 //list.getElement(2); //works
 //list.empty();

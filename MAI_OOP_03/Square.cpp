@@ -29,7 +29,10 @@ bool operator==(const Square & left, const Square & right) {
 	return left.side_a == right.side_a;
 }
 
+void Square::Print() {
+	std::cout << "a=" << side_a << std::endl;
 
+}
 Square::~Square() {
 	//std::cout << "Square deleted" << std::endl;
 }

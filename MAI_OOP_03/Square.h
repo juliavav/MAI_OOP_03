@@ -18,6 +18,7 @@ public:
 
 	Square& operator=(const Square & right);
 
+	void Print() override;
 	virtual ~Square();
 private:
 	long int side_a;

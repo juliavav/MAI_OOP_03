@@ -31,13 +31,18 @@ bool operator==(const Rectangle& left, const Rectangle& right) {
 
 std::ostream& operator<<(std::ostream& os, const Rectangle& obj) {
 	os << "a=" << obj.side_a << ", b=" << obj.side_b << std::endl;
-
+	return os;
 }
 std::istream& operator>>(std::istream& is, Rectangle& obj) {
 
 	is >> obj.side_a;
 	is >> obj.side_b;
 	return is;
+}
+
+void Rectangle::Print()
+{
+	std::cout << "a=" << side_a << ", b=" << side_b << std::endl;
 }
 
 Rectangle::~Rectangle() {

@@ -2,6 +2,8 @@
 #define	TLIST_H
 
 #include "Square.h"
+#include "Rectangle.h"
+#include "Trapeze.h"
 #include "TListItem.h"
 
 class TList {
@@ -9,12 +11,9 @@ public:
 	TList();
 	TList(const TList& orig);
 
-	void addFirst(Square &&square);
-	void addLast(Square &&square);
-	void insert(Square &&square, Square &&squareNext);
+	void addFirst(Figure &&figure);
 	bool empty();
-	Square getElement(int n);
-	void delElement(Square &&square);
+	void delElement(int & index);
 	void eraseList();
 	friend std::ostream& operator<<(std::ostream& os, const TList& stack);
 	virtual ~TList();

@@ -8,6 +8,7 @@ class Trapeze : public Figure {
 public:
 	Trapeze();
 	Trapeze(std::istream &is);
+	Trapeze(const Trapeze& orig);
 	Trapeze(long int i, long int j, long int k);
 
 	friend bool operator==(const Trapeze& left, const Trapeze& right);
@@ -16,7 +17,7 @@ public:
 	friend std::istream& operator>>(std::istream& is, Trapeze& obj);
 
 	Trapeze& operator=(const Trapeze & right);
-
+	void Print() override;
 	virtual ~Trapeze();
 private:
 	long int side_a;

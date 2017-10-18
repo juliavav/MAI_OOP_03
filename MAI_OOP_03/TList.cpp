@@ -20,85 +20,41 @@ std::ostream& operator<<(std::ostream& os, const TList& list) {
 	return os;
 }
 
-void TList::addFirst(Square &&square) {
-	TListItem *other = new TListItem(square);
+void TList::addFirst(Figure &&figure) {
+	TListItem *other = new TListItem(figure);
 	other->SetNext(first);
 	first = other;
 }
 
-void TList::addLast(Square &&square) {
-	TListItem *other = new TListItem(square);
-	TListItem *iter = this->first;
-	if (first != nullptr) {
-		while (iter->GetNext() != nullptr) {
-			iter = iter->SetNext(iter->GetNext());
-		}
-		iter->SetNext(other);// little bit strange
-		other->SetNext(nullptr);
-	}
-	else {
-		first = other;
-	}
-}
 
-void TList::insert(Square &&squareNext, Square &&square) {
-	TListItem *other = new TListItem(square);
-	TListItem *iter = this->first;
-	if (iter->GetSquare() == squareNext) {
-		other->SetNext(iter->GetNext());
-		iter->SetNext(other);
-		//other->SetNext(nullptr);
-		std::cout << "Square is added." << std::endl;
-	}
-	else {
-		while (!(iter->GetSquare() == squareNext) && (iter->GetNext() != nullptr)) {
-			iter = iter->GetNext();
-		}
-
-		if ((iter->GetNext() == nullptr) && (!(iter->GetSquare() == squareNext))) {
-			std::cout << "There is not such element in this list." << std::endl;
-		}
-		else {
-			other->SetNext(iter->GetNext());
-			iter->SetNext(other);
-			std::cout << "Square is added." << std::endl;
-		}
-	}
-}
 bool TList::empty() {
 	return first == nullptr;
 }
-Square TList::getElement(int n) {
-	TListItem* iter = this->first;
-	for (int i = 1; i < n; i++) {
-		iter = iter->GetNext();
 
-	}
-	return iter->GetSquare();
-}
-void TList::delElement(Square && square)//пофиксить!!!!!!!!!!!!!!!!!!!!!
+void TList::delElement(int &index)
 {
 	TListItem* iter = this->first;
+	//int i = 0;
 	if (iter != nullptr) {
-		if (iter->GetSquare() == square) {
+		if (index=0) {
 			first = nullptr;
-			std::cout << "Square is deleted." << std::endl;
+			std::cout << "Figure is deleted." << std::endl;
 		}
 		else {
 			if (!(iter->GetNext() == nullptr)) {
-				while (!(iter->GetNext() == nullptr) && !(iter->GetNext()->GetSquare() == square)) {
+				while (!(iter->GetNext() == nullptr) && !(--index!=0)) {
 					iter = iter->GetNext();
 				}
 				if (!(iter->GetNext() == nullptr)) {
 					iter->SetNext(iter->GetNext()->GetNext());
-					std::cout << "Square is deleted." << std::endl;
+					std::cout << "Figure is deleted." << std::endl;
 				}
 				else {
-					std::cout << "There is no such element!" << std::endl;
+					std::cout << "There is no such index!" << std::endl;
 				}
 			}
 			else {
-				std::cout << "There is no such element!" << std::endl;
+				std::cout << "There is no such index!" << std::endl;
 			}
 		}
 	}
@@ -110,4 +66,4 @@ void TList::eraseList() {
 TList::~TList() {
 	std::cout << "List deleted!" << std::endl;
 	delete first;
-}#pragma once
+}

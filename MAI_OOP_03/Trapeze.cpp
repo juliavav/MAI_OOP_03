@@ -18,6 +18,7 @@ Trapeze::Trapeze(std::istream &is) {
 	is >> height;
 }
 
+
 Trapeze::Trapeze(const Trapeze& orig) {
 	side_a = orig.side_a;
 	side_b = orig.side_b;
@@ -38,6 +39,11 @@ bool operator==(const Trapeze& left, const Trapeze& right) {
 
 std::ostream& operator<<(std::ostream& os, const Trapeze& obj) {
 	os << "a=" << obj.side_a << ", b=" << obj.side_b << ", height=" << obj.height << std::endl;
+	return os;
+}
+
+void Trapeze::Print() {
+	std::cout << "a=" << side_a << ", b=" << side_b << ", height=" << height << std::endl;
 
 }
 

@@ -18,6 +18,7 @@ public:
 
 	Rectangle& operator=(const Rectangle & right);
 
+	void Print() override;
 	virtual ~Rectangle();
 private:
 	long int side_a;
