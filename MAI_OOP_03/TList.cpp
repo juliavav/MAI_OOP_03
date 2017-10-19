@@ -9,7 +9,7 @@ TList::TList(const TList& orig) {
 
 std::ostream& operator<<(std::ostream& os, const TList& list) {
 
-	TListItem *item = list.first;
+	std::shared_ptr<TListItem> *item = list.first;
 
 	while (item != nullptr)
 	{

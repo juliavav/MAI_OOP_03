@@ -9,9 +9,8 @@
 class TList {
 public:
 	TList();
-	TList(const TList& orig);
-
-	void addFirst(Figure &&figure);
+	
+	void addFirst(std::shared_ptr<Figure> &figure);
 	bool empty();
 	void delElement(int & index);
 	void eraseList();

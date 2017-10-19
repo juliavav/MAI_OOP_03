@@ -1,33 +1,30 @@
 #include "TListItem.h"
 #include <iostream>
 
-TListItem::TListItem(const Figure& figure) {
+TListItem::TListItem(const std::shared_ptr<Figure> & figure) {
 	this->figure = figure;
 	this->next = nullptr;
 	//std::cout << "List item: created" << std::endl;
 }
 
-TListItem::TListItem(const TListItem& orig) {
-	this->figure = orig.figure;
-	this->next = orig.next;
-	//std::cout << "List item: copied" << std::endl;
-}
+//TListItem::TListItem(const std::shared_ptr<Figure> & orig) {
+//	this->figure = orig.figure;
+//	this->next = orig.next;
+//	//std::cout << "List item: copied" << std::endl;
+//}
 
-TListItem* TListItem::SetNext(TListItem* next) {
-	TListItem* old = this->next;
+std::shared_ptr<TListItem>TListItem::SetNext(std::shared_ptr<TListItem> next) {
+	std::shared_ptr<TListItem> old = this->next;
 	this->next = next;
 	return old;
 }
 
 
-TListItem* TListItem::GetNext() {
+std::shared_ptr<TListItem> TListItem::GetNext() {
 	return this->next;
 }
 
 TListItem::~TListItem() {
-	std::cout << "List item: deleted" << std::endl;
-	delete next;
-
 }
 
 std::ostream& operator<<(std::ostream& os, const TListItem& obj) {

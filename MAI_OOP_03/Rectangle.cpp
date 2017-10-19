@@ -40,7 +40,7 @@ std::istream& operator>>(std::istream& is, Rectangle& obj) {
 	return is;
 }
 
-void Rectangle::Print()
+void  Rectangle::Print()
 {
 	std::cout << "a=" << side_a << ", b=" << side_b << std::endl;
 }
