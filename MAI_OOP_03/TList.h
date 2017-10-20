@@ -18,7 +18,7 @@ public:
 	virtual ~TList();
 private:
 
-	TListItem *first;
+	std::shared_ptr<TListItem> first;
 };
 
 #endif	/* TLIST_H */

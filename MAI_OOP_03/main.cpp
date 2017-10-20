@@ -11,6 +11,7 @@ int main(int argc, char** argv) {
 	TList list;
 	int menuNum = 7;
 	int size;
+	std::shared_ptr<Figure> sptr;
 	std::cout << "Hello! That's my MENU:" << std::endl;
 	while (menuNum != 0) {
 		if ((menuNum >= 0) || (menuNum <= 7))
@@ -24,7 +25,8 @@ int main(int argc, char** argv) {
 				std::cout << "Please, enter a side of the square: " << std::endl;
 				std::cin >> size;
 				if (size >= 0) {
-					list.addFirst(Square(size));
+					sptr = std::make_shared<Square>(size);
+					list.addFirst(sptr);
 					std::cout << "Figure is added." << std::endl;
 				}
 				else {
@@ -33,11 +35,13 @@ int main(int argc, char** argv) {
 				std::cout << "______________________________________" << std::endl;
 				break;
 			case 2:
-				list.addFirst(Rectangle(std::cin));
+				sptr = std::make_shared<Rectangle>(std::cin);
+				list.addFirst(sptr);
 				std::cout << "______________________________________" << std::endl;
 				break;
 			case 3:
-				list.addFirst(Trapeze(std::cin));
+				sptr = std::make_shared<Trapeze>(std::cin);
+				list.addFirst(sptr);
 				std::cout << "______________________________________" << std::endl;
 				break;
 			case 4:

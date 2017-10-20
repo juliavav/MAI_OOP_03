@@ -24,6 +24,11 @@ std::shared_ptr<TListItem> TListItem::GetNext() {
 	return this->next;
 }
 
+std::shared_ptr<Figure> TListItem::GetFigure()
+{
+	return this->figure;
+}
+
 TListItem::~TListItem() {
 }
 

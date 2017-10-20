@@ -1,27 +1,28 @@
 ﻿#include "TList.h"
 
-TList::TList() : first(nullptr) {
+TList::TList() {
+	first = nullptr;
 }
 
-TList::TList(const TList& orig) {
-	first = orig.first;
-}
 
 std::ostream& operator<<(std::ostream& os, const TList& list) {
 
-	std::shared_ptr<TListItem> *item = list.first;
-
+	std::shared_ptr<TListItem> item = list.first;
+	int i = 1;
 	while (item != nullptr)
 	{
-		os << *item;
+		std::cout << "[" << i << "]";
+		item->GetFigure()->Print();
 		item = item->GetNext();
+		i++;
 	}
 
 	return os;
 }
 
-void TList::addFirst(Figure &&figure) {
-	TListItem *other = new TListItem(figure);
+void TList::addFirst(std::shared_ptr<Figure> &figure) {
+	std::shared_ptr<TListItem> other = std::make_shared<TListItem>(figure);
+
 	other->SetNext(first);
 	first = other;
 }
@@ -33,7 +34,7 @@ bool TList::empty() {
 
 void TList::delElement(int &index)
 {
-	TListItem* iter = this->first;
+	std::shared_ptr<TListItem>iter = this->first;
 	//int i = 0;
 	if (iter != nullptr) {
 		if (index=0) {
@@ -65,5 +66,5 @@ void TList::eraseList() {
 
 TList::~TList() {
 	std::cout << "List deleted!" << std::endl;
-	delete first;
+	//delete first;
 }

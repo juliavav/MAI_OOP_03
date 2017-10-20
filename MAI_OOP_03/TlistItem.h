@@ -14,6 +14,7 @@ public:
 
 	std::shared_ptr<TListItem> SetNext(std::shared_ptr<TListItem> next);
 	std::shared_ptr<TListItem> GetNext();
+	std::shared_ptr<Figure> GetFigure();
 	//Figure GetFigure() const;
 
 	virtual ~TListItem();
