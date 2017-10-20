@@ -11,7 +11,8 @@ int main(int argc, char** argv) {
 	TList list;
 	int menuNum = 7;
 	int size;
-	std::shared_ptr<Figure> sptr;
+	int figure, figureTemp;
+	std::shared_ptr<Figure> sptr, sptrTemp;
 	std::cout << "Hello! That's my MENU:" << std::endl;
 	while (menuNum != 0) {
 		if ((menuNum >= 0) || (menuNum <= 7))
@@ -22,10 +23,20 @@ int main(int argc, char** argv) {
 				std::cout << "Bye!" << std::endl;
 				break;
 			case 1:
-				std::cout << "Please, enter a side of the square: " << std::endl;
-				std::cin >> size;
-				if (size >= 0) {
-					sptr = std::make_shared<Square>(size);
+				std::cout << "Please, enter a figure (1 - trapeze; 2- rectangle, 3 - square) " << std::endl;
+				std::cin >> figure;
+				if (figure == 1) {
+					sptr = std::make_shared<Trapeze>(std::cin);
+					list.addFirst(sptr);
+					std::cout << "Figure is added." << std::endl;
+				} 
+				else if(figure == 2){
+					sptr = std::make_shared<Rectangle>(std::cin);
+					list.addFirst(sptr);
+					std::cout << "Figure is added." << std::endl;
+				}
+				else if (figure == 3) {
+					sptr = std::make_shared<Square>(std::cin);
 					list.addFirst(sptr);
 					std::cout << "Figure is added." << std::endl;
 				}
@@ -35,20 +46,33 @@ int main(int argc, char** argv) {
 				std::cout << "______________________________________" << std::endl;
 				break;
 			case 2:
-				sptr = std::make_shared<Rectangle>(std::cin);
-				list.addFirst(sptr);
+				std::cout << "Please, enter a figure (1 - trapeze; 2- rectangle, 3 - square). " << std::endl;
+				std::cin >> figure;
+				if (figure == 1) {
+					sptr = std::make_shared<Trapeze>(std::cin);
+					list.addLast(sptr);
+					std::cout << "Figure is added." << std::endl;
+				}
+				else if (figure == 2) {
+					sptr = std::make_shared<Rectangle>(std::cin);
+					list.addLast(sptr);
+					std::cout << "Figure is added." << std::endl;
+				}
+				else if (figure == 3) {
+					sptr = std::make_shared<Square>(std::cin);
+					list.addLast(sptr);
+					std::cout << "Figure is added." << std::endl;
+				}
+				else {
+					std::cout << "I can't make such figure." << std::endl;
+				}
 				std::cout << "______________________________________" << std::endl;
 				break;
 			case 3:
-				sptr = std::make_shared<Trapeze>(std::cin);
-				list.addFirst(sptr);
-				std::cout << "______________________________________" << std::endl;
-				break;
-			case 4:
-				std::cout << list << std::endl;
-				std::cout << "______________________________________" << std::endl;
-				break;
-			case 5:
+				//sptr = std::make_shared<Trapeze>(std::cin);
+				//list.addFirst(sptr);
+				//std::cout << "______________________________________" << std::endl;
+				//break;
 				std::cout << "Please, enter an index of figure you want to delete " << std::endl;
 				std::cin >> size;
 				if (size < 0) {
@@ -58,17 +82,42 @@ int main(int argc, char** argv) {
 				list.delElement(size);
 				std::cout << "______________________________________" << std::endl;
 				break;
+			case 4:
+				std::cout << list << std::endl;
+				std::cout << "______________________________________" << std::endl;
+				break;
+			case 5:
+				std::cout << "Please, enter a figure you want to add (1 - trapeze; 2- rectangle, 3 - square)." << std::endl;
+				std::cin >> figure;
+				if (figure == 1) {
+					sptr = std::make_shared<Trapeze>(std::cin);
+				}
+				else if (figure == 2) {
+					sptr = std::make_shared<Rectangle>(std::cin);
+				}
+				else if (figure == 3) {
+					sptr = std::make_shared<Square>(std::cin);
+				}
+				else {
+					std::cout << "I can't find such figure." << std::endl;
+				}
+				std::cout << "Please, enter an index." << std::endl;
+				std::cin >> size;
+				list.insert(size,sptr);
+				std::cout << "______________________________________" << std::endl;
+				break;
+
 			case 6:
 				list.eraseList();
 				std::cout << "List is absolutely clean." << std::endl;
 				std::cout << "______________________________________" << std::endl;
 				break;
 			case 7:
-				std::cout << "1. Add new square" << std::endl;
-				std::cout << "2. Add new rectangle." << std::endl;
-				std::cout << "3. Add new trapeze." << std::endl;
+				std::cout << "1. Add new item in begin of list." << std::endl;
+				std::cout << "2. Add new item in end of list." << std::endl;
+				std::cout << "3. Delete item from list" << std::endl;
 				std::cout << "4. Print list." << std::endl;
-				std::cout << "5. Delete item" << std::endl;
+				std::cout << "5. Insert in list" << std::endl;
 				std::cout << "6. Erase list." << std::endl;
 				std::cout << "7. Print MENU." << std::endl;
 				std::cout << "0. Exit out program." << std::endl;
